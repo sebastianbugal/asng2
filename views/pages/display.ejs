@@ -10,14 +10,11 @@
 
 <div class="container">
 <h2>Database Results</h2>
-
 <ul>
     <% rows.forEach(function(r) { %>
-        <li><%= r.fname %></li>
+        <li><%= r.uid %>,<%= r.name%></li>
     <% }); %>
 </ul>
-
 </div>
-
 </body>
 </html>

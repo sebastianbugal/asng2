@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  select{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  </style>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+<% include ../partials/nav.ejs %>
+
+<div class="container">
+  <h1>User</h1>
+  <form class="" action="/adduser" method="post">
+      <input type="text" name="uname" value="" placeholder="Name"><br>
+      <input type="number" name="age" value="" placeholder="Age"><br>
+      <input type="number" name="height" value="" placeholder="Height"><br>
+      <select id="sex" name="Sex">
+        <option value="volvo">Male</option>
+        <option value="saab">Female</option>
+      </select>     
+      <input type="number" name="chess_elo" value="" placeholder="Chess Elo"><br>
+      <input type="submit" name="sub" value="SERVER">
+  </form>
+
+</div>
+</body>
+</html>
