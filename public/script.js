@@ -1,0 +1,1 @@
+var a=window.prompt("tell me ur name", "Name");
