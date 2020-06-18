@@ -44,7 +44,10 @@ app.get('/',(req,res) => {
 app.post('/adduser',(req,res)=>{
   var uname=req.body.uname;
   var age=req.body.age;
-  var insert_user_query=`insert into usr (name, age) values('${uname}',${age})`;
+  var height=req.body.height;
+  var sex=req.body.sex;
+  var elo=req.body.chess_elo;
+  var insert_user_query=`insert into usr (name, age, height, sex,chess_elo) values('${uname}',${age},${height},'${sex}',${elo})`;
   pool.query(insert_user_query,(error,result)=>{
     if(error){
       res.end(error);}

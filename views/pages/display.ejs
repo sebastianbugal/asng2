@@ -2,6 +2,16 @@
 <html>
 <head>
   <% include ../partials/header.ejs %>
+  <style>
+    .box{
+      display: inline-block;
+      margin:2px;
+      padding:2px;
+      width:auto;
+      height:auto;
+      border:1px solid #000;
+    }
+  </style>
 </head>
 
 <body>
@@ -10,11 +20,9 @@
 
 <div class="container">
 <h2>Database Results</h2>
-<ul>
-    <% rows.forEach(function(r) { %>
-        <li><%= r.uid %>,<%= r.name%></li>
-    <% }); %>
-</ul>
+<% rows.forEach(function(r) { %>
+<div class="box"><%= r.uid %><br><%= r.name%><br><%= r.chess_elo%></div>
+<% }); %>
 </div>
 </body>
 </html>
