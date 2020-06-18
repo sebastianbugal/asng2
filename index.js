@@ -5,7 +5,7 @@ const {Pool}=require('pg');
 var pool;
 //try{
 pool=new Pool({
-  connectionString: process.env.DATABASE_URL
+  connectionString: "postgresql-clean-96102"
 });
 //}
 // finally{
