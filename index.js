@@ -3,14 +3,15 @@ const path = require('path')
 const PORT = process.env.PORT || 1000
 const {Pool}=require('pg');
 var pool;
-try{
+//try{
 pool=new Pool({
   connectionString: process.env.DATABASE_URL
-});}
-finally{
-  pool=new Pool({
-    connectionString: 'postgres://postgres:root@localhost/users'
-  });}
+});
+//}
+// finally{
+//   pool=new Pool({
+//     connectionString: 'postgres://postgres:root@localhost/users'
+//   });}
 
 
 var app=express()
