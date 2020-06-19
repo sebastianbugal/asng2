@@ -52,7 +52,13 @@
 <% include ../partials/nav.ejs %>
 
 <div class="container" id="main">
-  <div id="del" class="button">Delete Selected User</div>
+ 
+  
+  <form class="" action="/del_user" method="post">
+    <input id="user_selected" name="user_selected" value='' type="hidden"><br>
+
+    <input class="button"  type="submit" name="sub" value="Delete Selected User">
+  </form>
 <h2>Database Results</h2>
 <% rows.forEach(function(r) { %>
 <div class="norm" id= <%=r.uid%> >User ID:<%= r.uid %><br> User Name:<%= r.name%><br>Chess Elo: <%= r.chess_elo%></div>

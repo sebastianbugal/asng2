@@ -3,19 +3,19 @@ const path = require('path')
 const PORT = process.env.PORT || 1000
 const {Pool}=require('pg');
 var pool;
-try{
-pool=new Pool({
-  connectionString: process.env.DATABASE_URL
-});
-}
-catch{
-  pool=new Pool({
-    user: 'postgres',
-    host:'localhost',
-    password:'root',
-    port:5432});
+
   
-  };
+pool=new Pool({
+  
+  connectionString: process.env.DATABASE_URL})
+
+  // pool=new Pool({
+  //   user: 'postgres',
+  //   host:'localhost',
+  //   password:'root',
+  //   port:5432});
+  
+  
 
 var app=express()
 app.use(express.json());
@@ -44,7 +44,25 @@ app.get('/',(req,res) => {
   })
 });
 
+app.post('/del_user',(req,res)=>{
+  var uid=req.body.user_selected;
+  console.log(uid)
+  var del_user_query=`DELETE FROM usr WHERE uid=${Number(uid)}`;
+  pool.query(del_user_query,(error,result)=>{
+    if(error){
+      res.end(error);}
+    req.resume();
+    var getUsrQuery =`SELECT * FROM usr`; 
+    pool.query(getUsrQuery,(error,result)=>{
+      if(error){
+        res.end(error);}
+      var results={'rows':result.rows}
+      res.redirect('/display')
 
+      
+    })
+})
+});
 app.post('/adduser',(req,res)=>{
   var uname=req.body.uname;
   var age=req.body.age;
@@ -55,8 +73,8 @@ app.post('/adduser',(req,res)=>{
   pool.query(insert_user_query,(error,result)=>{
     if(error){
       res.end(error);}
-    req.resume();
-})
+    res.redirect('/')
+    })
 
 });
 app.get('/users/:id',(req,res)=>{

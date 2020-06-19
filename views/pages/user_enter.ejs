@@ -25,14 +25,14 @@
 <div class="container">
   <h1>User</h1>
   <form class="" action="/adduser" method="post">
-      <input type="text" name="uname" value="" placeholder="Name"><br>
-      <input type="number" name="age" value="" placeholder="Age"><br>
-      <input type="number" name="height" value="" placeholder="Height"><br>
-      <select id="sex" name="sex">
+      <input type="text" name="uname" value="" placeholder="Name" required><br>
+      <input type="number" name="age" value="" placeholder="Age" required><br>
+      <input type="number" name="height" value="" placeholder="Height" required><br>
+      <select id="sex" name="sex" >
         <option value="Male">Male</option>
         <option value="Female">Female</option>
       </select>     
-      <input type="number" name="chess_elo" value="" placeholder="Chess Elo"><br>
+      <input type="number" name="chess_elo" value="" placeholder="Chess Elo" required><br>
       <input type="submit" name="sub" value="SERVER">
   </form>
 
