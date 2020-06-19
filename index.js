@@ -8,7 +8,7 @@ pool=new Pool({
   connectionString: process.env.DATABASE_URL
 });
 }
-finally{
+catch{
   pool=new Pool({
     user: 'postgres',
     host:'localhost',
@@ -16,8 +16,6 @@ finally{
     port:5432});
   
   };
-
-
 
 var app=express()
 app.use(express.json());
