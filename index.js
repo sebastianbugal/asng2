@@ -80,7 +80,9 @@ app.post('/send_update', (req,res)=>{
   console.log(sex)
   var elo=req.body.chess_elo_upload;
   console.log(elo)
-  var query_update_usr=`UPDATE usr SET name='${name}', age=${Number(age)}, height=${Number(height)}, chess_elo=${Number(elo)}, sex='${sex}' WHERE uid=${Number(uid)}`;
+  var type=req.body.type;
+
+  var query_update_usr=`UPDATE usr SET name='${name}', age=${Number(age)}, height=${Number(height)}, chess_elo=${Number(elo)}, sex='${sex}', type='${type}' WHERE uid=${Number(uid)}`;
   pool.query(query_update_usr,(error,result)=>{
     if(error){
       res.end(error);}
@@ -134,7 +136,8 @@ app.post('/adduser',(req,res)=>{
   var height=req.body.height;
   var sex=req.body.sex;
   var elo=req.body.chess_elo;
-  var insert_user_query=`insert into usr (name, age, height, sex,chess_elo) values('${uname}',${age},${height},'${sex}',${elo})`;
+  var type=req.body.type;
+  var insert_user_query=`insert into usr (name, age, height, sex,chess_elo, type) values('${uname}',${age},${height},'${sex}',${elo}, '${type}')`;
   pool.query(insert_user_query,(error,result)=>{
     if(error){
       res.end(error);}

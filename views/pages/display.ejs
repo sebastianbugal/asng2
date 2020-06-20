@@ -34,7 +34,6 @@
       margin:2px;
       padding:2px;
       width:auto;
-      height:auto;
       border:1px solid #000;
       background-color: rgb(101, 117, 112);
     }
@@ -42,8 +41,9 @@
       display: inline-block;
       margin:2px;
       padding:2px;
+      min-height:65 ;
       width:auto;
-      height:auto;
+      color:white;
       border:1px solid #000;
       background-color: aquamarine;
       cursor: pointer;
@@ -82,7 +82,17 @@
 </div>
 <h2>Database Results</h2>
 <% rows.forEach(function(r) { %>
-<div class="norm" id= <%=r.uid%> >User ID:<%= r.uid %><br> User Name:<%= r.name%><br>Chess Elo: <%= r.chess_elo%></div>
+<%var col; %>
+<% if(r.chess_elo<500 ) {col='olive'; %>
+<% }else if(r.chess_elo<=1000) {col='forestgreen'; %>
+<% }else if(r.chess_elo<=1500) {col='rgb(176,141,87)'; %>
+<% }else if(r.chess_elo<=2000) {col='rgb(192,192,192)'; %>
+<% }else if(r.chess_elo<=2500) {col='goldenrod'; %>
+<% }else{col='rgb(65,105,225)'; %>
+<%}%>
+<%var height = r.height;%>
+<%if(r.height<65 ){height=65;  }%>
+<div class="norm" data-col="<%=col%>" style=" height: <%=height%>px; background-color: <%=col%>;" id=<%=r.uid%>   >User ID: <%= r.uid %><br>User Name: <%= r.name%><br>Chess Elo: <%=r.chess_elo%></div>
 <% }); %>
 </div>
 <script type="text/javascript" src="./script.js"></script>

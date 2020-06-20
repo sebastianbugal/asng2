@@ -16,8 +16,9 @@ function setup(){
             for(d of doc){
                 console.log(d.style.background)
                 if((d.style.background=='rgb(101, 117, 112)' || d.style.background=='rgb(101, 117, 112) none repeat scroll 0% 0%') && d.id!=this.id ){
-                    console.log('h12312i')
-                    d.style.background='aquamarine';
+                    console.log(d.dataset.col)
+                    
+                    d.style.background=d.dataset.col;
                 }
             }
 

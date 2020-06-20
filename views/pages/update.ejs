@@ -70,11 +70,15 @@
         <% include ../partials/nav.ejs %>
 </div>
 <div class="container">
-  <h1>User</h1>
+  <h1>User ID: <%=user[0].uid%></h1>
   <form class="" action="/send_update" method="post">
+    <h3>Name:</h3>
       <input type="text" name="name_upload" value=<%=user[0].name%> placeholder="Name" required><br>
+      <h3>Age:</h3>
       <input type="number" name="age_upload" value=<%=user[0].age%> placeholder="Age" required><br>
+      <h3>Height:</h3>
       <input type="number" name="height_upload" value=<%=user[0].height%> placeholder="Height" required><br>
+      <h3>Sex:</h3>
       <select id="sex" name="sex_upload">
           <% if(user[0].sex == 'Male'){ %>
         <option value="Male" selected>Male</option>
@@ -85,8 +89,12 @@
             <% } %>
 
       </select>     
+      <h3>Chess Elo:</h3>
       <input type="number" name="chess_elo_upload" value=<%=user[0].chess_elo%>   placeholder="Chess Elo" required><br>
-      <p class="text-center">Click Submit to update user <%=user[0].uid%></p>
+      <h3>Type:</h3>
+      <input style="text-transform: capitalize;" type="text" name="type" value=<%=user[0].type%>   placeholder="type" required><br>
+
+      <h3 class="text-center">Click Submit to update user <%=user[0].uid%></h3>
       <input type="submit" name="sub" value="Submit" class="button" >
       <input id="user_selected_update" name="user_selected_update" type="hidden" value= <%=user[0].uid%> ><br>
 
