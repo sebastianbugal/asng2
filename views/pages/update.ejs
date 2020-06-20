@@ -15,6 +15,51 @@
     margin: 8px 0;
     box-sizing: border-box;
   }
+  .button {
+      background-color: white;
+      color: black;
+      border: 2px solid #252525; /* Green */
+      width:100%;
+      height:auto;
+      padding:5px;
+      display: inline-block;
+      margin:2px;
+      font-size: large;
+      transition-duration: 0.4s;
+    }
+    .p1{
+      display: inline-block;
+    }
+    .button:hover{
+      background-color: rgb(141, 141, 141);
+      color: black;
+      border: 2px solid #252525; /* Green */
+      width:100%;
+      height:auto;
+      padding:5px;
+      /* display: inline-block; */
+      font-size: large;
+      transition-duration: 0.4s;
+    }
+    .select{
+      display: inline-block;
+      margin:2px;
+      padding:2px;
+      width:auto;
+      height:auto;
+      border:1px solid #000;
+      background-color: rgb(101, 117, 112);
+    }
+    .norm{
+      display: inline-block;
+      margin:2px;
+      padding:2px;
+      width:auto;
+      height:auto;
+      border:1px solid #000;
+      background-color: aquamarine;
+      cursor: pointer;
+    }
   </style>
   <% include ../partials/header.ejs %>
 </head>
@@ -42,9 +87,12 @@
       </select>     
       <input type="number" name="chess_elo_upload" value=<%=user[0].chess_elo%>   placeholder="Chess Elo" required><br>
       <p class="text-center">Click Submit to update user <%=user[0].uid%></p>
-      <input type="submit" name="sub" value="Submit" >
+      <input type="submit" name="sub" value="Submit" class="button" >
       <input id="user_selected_update" name="user_selected_update" type="hidden" value= <%=user[0].uid%> ><br>
 
+  </form>
+  <form class="" action="/display" method="get">
+    <input class="button"  type="submit" name="sub" value="Back">
   </form>
 
 </div>

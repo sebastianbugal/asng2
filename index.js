@@ -24,6 +24,27 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
+
+app.post('/info',(req,res)=>{
+  var uid=req.body.user_selected_info;
+  console.log(uid)
+  var query_select_info=`SELECT * FROM usr WHERE uid=${uid}`;
+  pool.query(query_select_info,(error,result)=>{
+    var results={'user':result}
+    console.log(result)
+    if(error){
+      res.redirect('/display');
+    }
+    else if(result==undefined){
+      console.log('redirect')
+      return res.redirect('/display')
+    }
+    else{
+        res.render('pages/info',results);
+    }
+})
+});
+
 app.post('/update',(req,res)=>{
   var uid=req.body.user_selected_up;
   console.log(uid)
@@ -64,8 +85,6 @@ app.post('/send_update', (req,res)=>{
     if(error){
       res.end(error);}
     res.redirect('/display')
-  
-  
 })
 })
 

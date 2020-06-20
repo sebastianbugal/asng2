@@ -18,6 +18,9 @@
     .p1{
       display: inline-block;
     }
+    table{
+
+    }
     .button:hover{
       background-color: rgb(141, 141, 141);
       color: black;
@@ -48,7 +51,13 @@
       background-color: aquamarine;
       cursor: pointer;
     }
-    
+    table, th, td {
+  border: 1px solid black;
+  font-size: large;
+}
+    .main{
+        margin-left: auto;
+    }
   </style>
 </head>
 
@@ -56,34 +65,44 @@
 
 <% include ../partials/nav.ejs %>
 
-<div class="container" id="main">
- 
-  <div id="button_del" class="p1">
-  <form class="" action="/del_user" method="post">
-    <input id="user_selected" name="user_selected" type="hidden" value='' ><br>
 
-    <input class="button"  type="submit" name="sub" value="Delete Selected User">
+<div class="container">
+<h2>Attributes of user ID: <%=user.rows[0].uid%></h2>
 
-  </form>
-</div>
-<div id="button_up" class="p1">
-  <form class="" action="/update" method="post">
-    <input id="user_selected_up" name="user_selected_up" type="hidden" value='' ><br>
-    <input class="button"  type="submit" name="sub" value="Change Attributes of Selected User">
+    <table>
+        <tr>
+            <th>Attribute</th>
+            <th>Values</th>
+        </tr>
+        <tr>
+            <td>User ID: </td>
+            <td><%=user.rows[0].uid%></td>
+        </tr>
+        <tr>
+            <td>User Name: </td>
+            <td><%=user.rows[0].name%></td>
+        </tr>
+        <tr>
+            <td>Age: </td>
+            <td><%=user.rows[0].age%></td>
+        </tr>
+        <tr>
+            <td>Height</td>
+            <td><%=user.rows[0].height%></td>
+        </tr>
+        <tr>
+            <td>Sex: </td>
+            <td><%=user.rows[0].sex%></td>
+        </tr>
+        <tr>
+            <td>Chess Elo: </td>
+            <td><%=user.rows[0].chess_elo%></td>
+        </tr>
+    </table>
+    <form class="" action="/display" method="get">
+        <input class="button"  type="submit" name="sub" value="Back">
+      </form>
 
-  </form>
-</div>
-<div id="button_up" class="p1">
-  <form class="" action="/info" method="post">
-    <input id="user_selected_info" name="user_selected_info" type="hidden" value='' ><br>
-    <input class="button"  type="submit" name="sub" value="More INFO on Selected User">
-
-  </form>
-</div>
-<h2>Database Results</h2>
-<% rows.forEach(function(r) { %>
-<div class="norm" id= <%=r.uid%> >User ID:<%= r.uid %><br> User Name:<%= r.name%><br>Chess Elo: <%= r.chess_elo%></div>
-<% }); %>
 </div>
 <script type="text/javascript" src="./script.js"></script>
 

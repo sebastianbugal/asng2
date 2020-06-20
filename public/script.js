@@ -9,6 +9,9 @@ function setup(){
             var ud=document.getElementById('user_selected_up');
             ud.textContent=this.id;
             ud.value=this.id;
+            var u=document.getElementById('user_selected_info');
+            u.textContent=this.id;
+            u.value=this.id;
             doc=document.querySelectorAll(".norm");
             for(d of doc){
                 console.log(d.style.background)
