@@ -59,7 +59,7 @@ app.post('/send_update', (req,res)=>{
   console.log(sex)
   var elo=req.body.chess_elo_upload;
   console.log(elo)
-  var query_update_usr=`UPDATE usr SET name=${name}, age=${Number(age)}, height=${Number(height)}, chess_elo=${Number(elo)}, sex='${sex}' WHERE uid=${Number(uid)}`;
+  var query_update_usr=`UPDATE usr SET name=${name}, age=${Number(age)}, height=${Number(height)}, chess_elo=${Number(elo)} WHERE uid=${Number(uid)}`;
   pool.query(query_update_usr,(error,result)=>{
     if(error){
       res.end(error);}
