@@ -3,6 +3,9 @@
 <head>
   <% include ../partials/header.ejs %>
   <style>
+    .panel{
+      
+    }
     .button {
       background-color: white;
       color: black;
@@ -55,9 +58,15 @@
  
   
   <form class="" action="/del_user" method="post">
-    <input id="user_selected" name="user_selected" value='' type="hidden"><br>
+    <input id="user_selected" name="user_selected" type="hidden" value='' ><br>
 
     <input class="button"  type="submit" name="sub" value="Delete Selected User">
+
+  </form>
+  <form class="" action="/update" method="post">
+    <input id="user_selected_up" name="user_selected_up" type="hidden" value='' ><br>
+    <input class="button"  type="submit" name="sub" value="Change Attributes">
+
   </form>
 <h2>Database Results</h2>
 <% rows.forEach(function(r) { %>

@@ -23,6 +23,52 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
+
+app.post('/update',(req,res)=>{
+  var uid=req.body.user_selected_up;
+  console.log(uid)
+  var query_update_usr=`SELECT * FROM usr WHERE uid=${Number(uid)}`;
+
+  pool.query(query_update_usr,(error,result)=>{
+    if(error){
+      res.redirect('/display');}
+    var results={'user':result.rows}
+
+    console.log(results.user)
+    if(results.user.length==0){
+      console.log('redirect')
+      res.redirect('/display')
+    }
+    else{
+      res.render('pages/update',results);
+    }
+  
+})
+});
+app.post('/send_update', (req,res)=>{
+  var uid=req.body.user_selected_update;
+  console.log(uid)
+ 
+  var name=req.body.name_upload;
+  console.log(name)
+  var age=req.body.age_upload;
+  console.log(age)
+  var height=req.body.height_upload;
+  console.log(height)
+  var sex=req.body.sex_upload;
+  console.log(sex)
+  var elo=req.body.chess_elo_upload;
+  console.log(elo)
+  var query_update_usr=`UPDATE usr SET name=${name}, age=${Number(age)}, height=${Number(height)}, chess_elo=${Number(elo)}, sex='${sex}' WHERE uid=${Number(uid)}`;
+  pool.query(query_update_usr,(error,result)=>{
+    if(error){
+      res.end(error);}
+    res.redirect('/display')
+  
+  
+})
+})
+
 app.get('/display',(req,res) => {
   var getUsrQuery =`SELECT * FROM usr`; 
   pool.query(getUsrQuery,(error,result)=>{

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  
+  select{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  </style>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+
+        <% include ../partials/nav.ejs %>
+</div>
+<div class="container">
+  <h1>User</h1>
+  <form class="" action="/send_update" method="post">
+      <input type="text" name="name_upload" value=<%=user[0].name%> placeholder="Name" required><br>
+      <input type="number" name="age_upload" value=<%=user[0].age%> placeholder="Age" required><br>
+      <input type="number" name="height_upload" value=<%=user[0].height%> placeholder="Height" required><br>
+      <select id="sex" name="sex_upload">
+          <% if(user[0].sex == 'Male'){ %>
+        <option value="Male" selected>Male</option>
+        <option value="Female">Female</option>
+        <% }  else{ %>
+            <option value="Male" >Male</option>
+            <option value="Female" selected>Female</option>
+            <% } %>
+
+      </select>     
+      <input type="number" name="chess_elo_upload" value=<%=user[0].chess_elo%>   placeholder="Chess Elo" required><br>
+      <p class="text-center">Click Submit to update user <%=user[0].uid%></p>
+      <input type="submit" name="sub" value="Submit" >
+      <input id="user_selected_update" name="user_selected_update" type="hidden" value= <%=user[0].uid%> ><br>
+
+  </form>
+
+</div>
+</body>
+</html>
