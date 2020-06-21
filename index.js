@@ -5,15 +5,15 @@ const {Pool}=require('pg');
 var pool;
 
   
-pool=new Pool({
-  
-  connectionString: process.env.DATABASE_URL})
-
 // pool=new Pool({
-//   user: 'postgres',
-//   host:'localhost',
-//   password:'root',
-//   port:5432});
+  
+//   connectionString: process.env.DATABASE_URL})
+
+pool=new Pool({
+  user: 'postgres',
+  host:'localhost',
+  password:'root',
+  port:5432});
 
   
 
@@ -39,7 +39,7 @@ app.post('/info',(req,res)=>{
     else{
         res.render('pages/info',results);
     }
-})
+  })
 });
 
 app.get('/activity',(req,res)=>{
@@ -50,7 +50,7 @@ app.get('/activity',(req,res)=>{
     var results={'rows':result.rows}
     res.render('pages/activity',results);
 
-})
+  })
 })
 
 app.post('/update',(req,res)=>{
@@ -153,8 +153,5 @@ app.post('/adduser',(req,res)=>{
     res.redirect('/')
     })
 
-});
-app.get('/users/:id',(req,res)=>{
-  res.send("got it ")
 });
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
