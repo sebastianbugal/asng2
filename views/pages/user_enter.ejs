@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/st.css" />
+
   <style>
     input{
     width: 100%;
@@ -14,6 +16,29 @@
     margin: 8px 0;
     box-sizing: border-box;
   }
+  .button {
+      background-color: white;
+      color: black;
+      border: 2px solid #252525; /* Green */
+      width:100%;
+      height:auto;
+      padding:5px;
+      display: inline-block;
+      margin:2px;
+      font-size: 1em;
+      transition-duration: 0.4s;
+    }
+    .button:hover{
+      background-color: rgb(141, 141, 141);
+      color: black;
+      border: 2px solid #252525; /* Green */
+      width:100%;
+      height:auto;
+
+      /* display: inline-block; */
+      font-size: 1em;
+      transition-duration: 0.4s;
+    }
   </style>
   <% include ../partials/header.ejs %>
 </head>
@@ -28,13 +53,16 @@
       <input type="text" name="uname" value="" placeholder="Name" required><br>
       <input type="number" name="age" value="" placeholder="Age" required><br>
       <input type="number" name="height" value="" placeholder="Height" required><br>
+      <input type="number" name="size" value="" placeholder="Size" required><br>
+
       <select id="sex" name="sex" >
         <option value="Male">Male</option>
         <option value="Female">Female</option>
       </select>     
       <input type="number" name="chess_elo" value="" placeholder="Chess Elo" required><br>
       <input type="text" name="type" value="" placeholder="Type" required style="text-transform:uppercase"><br>
-      <input type="submit" name="sub" value="SERVER">
+
+      <input class="button"type="submit" name="sub" value="Submit User Information">
   </form>
 
 </div>

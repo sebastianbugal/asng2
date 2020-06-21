@@ -2,7 +2,9 @@
 <html>
 <head>
   <% include ../partials/header.ejs %>
-  <style>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/st.css" />
+
+  <!-- <style>
 
     .button {
       background-color: white;
@@ -11,7 +13,7 @@
       width:auto;
       height:auto;
       padding:5px;
-      margin:2px;
+      margin-top:10px;
       display: inline-block;
       font-size: large;
       transition-duration: 0.4s;
@@ -19,9 +21,7 @@
     .p1{
       display: inline-block;
     }
-    table{
 
-    }
     .button:hover{
       background-color: rgb(141, 141, 141);
       color: black;
@@ -56,11 +56,12 @@
     table, th, td {
   border: 1px solid black;
   font-size: large;
+  padding: 3px;
 }
     .main{
         margin-left: auto;
     }
-  </style>
+  </style> -->
 </head>
 
 <body>
@@ -93,6 +94,10 @@
             <td><%=user.rows[0].height%></td>
         </tr>
         <tr>
+          <td>Size: </td>
+          <td><%=user.rows[0].size%></td>
+      </tr>
+        <tr>
             <td>Sex: </td>
             <td><%=user.rows[0].sex%></td>
         </tr>
@@ -100,13 +105,14 @@
             <td>Chess Elo: </td>
             <td><%=user.rows[0].chess_elo%></td>
         </tr>
+
         <tr>
             <td>Type: </td>
             <td style="text-transform:uppercase"><%=user.rows[0].type%></td>
         </tr>
     </table>
     <form class="" action="/display" method="get">
-        <input class="button"  type="submit" name="sub" value="Back">
+        <input class="button-back"  type="submit" name="sub" value="Back">
       </form>
 
 </div>

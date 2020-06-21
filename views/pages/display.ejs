@@ -2,53 +2,7 @@
 <html>
 <head>
   <% include ../partials/header.ejs %>
-  <style>
-
-    .button {
-      background-color: white;
-      color: black;
-      border: 2px solid #252525; /* Green */
-      width:auto;
-      height:auto;
-      padding:5px;
-      display: inline-block;
-      font-size: large;
-      transition-duration: 0.4s;
-    }
-    .p1{
-      display: inline-block;
-    }
-    .button:hover{
-      background-color: rgb(141, 141, 141);
-      color: black;
-      border: 2px solid #252525; /* Green */
-      width:auto;
-      height:auto;
-      padding:5px;
-      /* display: inline-block; */
-      font-size: large;
-      transition-duration: 0.4s;
-    }
-    .select{
-      display: inline-block;
-      margin:2px;
-      padding:2px;
-      width:auto;
-      border:1px solid #000;
-      background-color: rgb(101, 117, 112);
-    }
-    .norm{
-      display: inline-block;
-      margin:2px;
-      padding:2px;
-      min-height:70 ;
-      width:auto;
-      color:white;
-      border:4px solid #000;
-      cursor: pointer;
-    }
-    
-  </style>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/st.css" />
 </head>
 
 <body>
@@ -56,7 +10,22 @@
 <% include ../partials/nav.ejs %>
 
 <div class="container" id="main">
- 
+  
+<div class="pull-right" style="margin-right:0 !important ; display: inline-block;">
+  <div id="button_up" class="p1">
+    <form class="" action="/update" method="post">
+      <input id="user_selected_up" name="user_selected_up" type="hidden" value='' ><br>
+      <input class="button"  type="submit" name="sub" value="Change Attributes of Selected User">
+  
+    </form>
+  </div>
+  <div id="button_up" class="p1">
+    <form class="" action="/info" method="post">
+      <input id="user_selected_info" name="user_selected_info" type="hidden" value='' ><br>
+      <input class="button"  type="submit" name="sub" value="More INFO on Selected User">
+  
+    </form>
+  </div>
   <div id="button_del" class="p1">
   <form class="" action="/del_user" method="post">
     <input id="user_selected" name="user_selected" type="hidden" value='' ><br>
@@ -65,21 +34,13 @@
 
   </form>
 </div>
-<div id="button_up" class="p1">
-  <form class="" action="/update" method="post">
-    <input id="user_selected_up" name="user_selected_up" type="hidden" value='' ><br>
-    <input class="button"  type="submit" name="sub" value="Change Attributes of Selected User">
 
-  </form>
-</div>
-<div id="button_up" class="p1">
-  <form class="" action="/info" method="post">
-    <input id="user_selected_info" name="user_selected_info" type="hidden" value='' ><br>
-    <input class="button"  type="submit" name="sub" value="More INFO on Selected User">
 
-  </form>
+
 </div>
-<h2>Database Results</h2>
+<div style="margin-top: 50px;">
+  <h2>Display Database</h2>
+
 <% rows.forEach(function(r) { %>
 <%var col; %>
 <% if(r.chess_elo<500 ) {col='olive'; %>
@@ -90,9 +51,9 @@
 <% }else{col='rgb(65,105,225)'; %>
 <%}%>
 <%var height = r.height;%>
-<%if(r.height<70){height=70;  }%>
-<div class="norm" data-col="<%=col%>" style=" height: <%=height%>px; background-color: <%=col%>;" id=<%=r.uid%>   >User ID: <%= r.uid %><br>User Name: <%= r.name%><br>Chess Elo: <%=r.chess_elo%></div>
+<div class="norm" data-col="<%=col%>" style="padding-right:<%=r.size%>px; padding-bottom: <%=height%>px; background-color: <%=col%>;" id=<%=r.uid%>   >User ID: <%= r.uid %><br>Name: <%= r.name%><br>Chess Elo: <%=r.chess_elo%></div>
 <% }); %>
+</div>
 </div>
 <script type="text/javascript" src="./script.js"></script>
 

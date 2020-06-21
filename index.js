@@ -9,12 +9,12 @@ pool=new Pool({
   
   connectionString: process.env.DATABASE_URL})
 
-  // pool=new Pool({
-  //   user: 'postgres',
-  //   host:'localhost',
-  //   password:'root',
-  //   port:5432});
-  
+// pool=new Pool({
+//   user: 'postgres',
+//   host:'localhost',
+//   password:'root',
+//   port:5432});
+
   
 
 var app=express()
@@ -27,16 +27,13 @@ app.set('view engine', 'ejs')
 
 app.post('/info',(req,res)=>{
   var uid=req.body.user_selected_info;
-  console.log(uid)
   var query_select_info=`SELECT * FROM usr WHERE uid=${uid}`;
   pool.query(query_select_info,(error,result)=>{
     var results={'user':result}
-    console.log(result)
     if(error){
       res.redirect('/display');
     }
     else if(result==undefined){
-      console.log('redirect')
       return res.redirect('/display')
     }
     else{
@@ -45,9 +42,19 @@ app.post('/info',(req,res)=>{
 })
 });
 
+app.get('/activity',(req,res)=>{
+  var query_time_added=`SELECT time_added, uid, name FROM usr ORDER BY time_added DESC`;
+  pool.query(query_time_added,(error,result)=>{
+    if(error){
+      res.redirect('/display');}
+    var results={'rows':result.rows}
+    res.render('pages/activity',results);
+
+})
+})
+
 app.post('/update',(req,res)=>{
   var uid=req.body.user_selected_up;
-  console.log(uid)
   var query_update_usr=`SELECT * FROM usr WHERE uid=${Number(uid)}`;
 
   pool.query(query_update_usr,(error,result)=>{
@@ -55,9 +62,7 @@ app.post('/update',(req,res)=>{
       res.redirect('/display');}
     var results={'user':result.rows}
 
-    console.log(results.user)
     if(results.user.length==0){
-      console.log('redirect')
       res.redirect('/display')
     }
     else{
@@ -68,21 +73,15 @@ app.post('/update',(req,res)=>{
 });
 app.post('/send_update', (req,res)=>{
   var uid=req.body.user_selected_update;
-  console.log(uid)
  
   var name=req.body.name_upload;
-  console.log(name)
   var age=req.body.age_upload;
-  console.log(age)
   var height=req.body.height_upload;
-  console.log(height)
   var sex=req.body.sex_upload;
-  console.log(sex)
   var elo=req.body.chess_elo_upload;
-  console.log(elo)
   var type=req.body.type;
-
-  var query_update_usr=`UPDATE usr SET name='${name}', age=${Number(age)}, height=${Number(height)}, chess_elo=${Number(elo)}, sex='${sex}', type='${type}' WHERE uid=${Number(uid)}`;
+  var size=req.body.size;
+  var query_update_usr=`UPDATE usr SET name='${name}', age=${Number(age)}, height=${Number(height)}, chess_elo=${Number(elo)}, sex='${sex}', type='${type}',size=${size} WHERE uid=${Number(uid)}`;
   pool.query(query_update_usr,(error,result)=>{
     if(error){
       res.end(error);}
@@ -97,9 +96,19 @@ app.get('/display',(req,res) => {
       res.end(error);}
     var results={'rows':result.rows}
     res.render('pages/display',results);
-  
   })
 });
+
+app.get('/leader_board', (req,res)=>{
+  var get_leader_board=`SELECT * FROM usr ORDER BY chess_elo DESC`;
+  pool.query(get_leader_board,(error,result)=>{
+    if(error){
+      res.end(error);}
+    var results={'rows':result.rows};
+    res.render('pages/leaderboard',results)
+    })
+})
+
 app.get('/',(req,res) => {
   var getUsrQuery =`SELECT * FROM usr`; 
   pool.query(getUsrQuery,(error,result)=>{
@@ -113,7 +122,6 @@ app.get('/',(req,res) => {
 
 app.post('/del_user',(req,res)=>{
   var uid=req.body.user_selected;
-  console.log(uid)
   var del_user_query=`DELETE FROM usr WHERE uid=${Number(uid)}`;
   pool.query(del_user_query,(error,result)=>{
     if(error){
@@ -137,7 +145,8 @@ app.post('/adduser',(req,res)=>{
   var sex=req.body.sex;
   var elo=req.body.chess_elo;
   var type=req.body.type;
-  var insert_user_query=`insert into usr (name, age, height, sex,chess_elo, type) values('${uname}',${age},${height},'${sex}',${elo}, '${type}')`;
+  var size=req.body.size;
+  var insert_user_query=`insert into usr (name, age, height, sex,chess_elo, type, size) values('${uname}',${age},${height},'${sex}',${elo}, '${type}', ${size})`;
   pool.query(insert_user_query,(error,result)=>{
     if(error){
       res.end(error);}
@@ -146,7 +155,6 @@ app.post('/adduser',(req,res)=>{
 
 });
 app.get('/users/:id',(req,res)=>{
-  console.log(req.params.id);
   res.send("got it ")
 });
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))

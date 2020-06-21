@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/st.css" />
+
   <style>
-    input{
+  input{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
+    
   }
-  
   select{
     width: 100%;
     padding: 12px 20px;
@@ -24,11 +26,8 @@
       padding:5px;
       display: inline-block;
       margin:2px;
-      font-size: large;
+      font-size: 1em;
       transition-duration: 0.4s;
-    }
-    .p1{
-      display: inline-block;
     }
     .button:hover{
       background-color: rgb(141, 141, 141);
@@ -36,29 +35,10 @@
       border: 2px solid #252525; /* Green */
       width:100%;
       height:auto;
-      padding:5px;
+
       /* display: inline-block; */
-      font-size: large;
+      font-size: 1em;
       transition-duration: 0.4s;
-    }
-    .select{
-      display: inline-block;
-      margin:2px;
-      padding:2px;
-      width:auto;
-      height:auto;
-      border:1px solid #000;
-      background-color: rgb(101, 117, 112);
-    }
-    .norm{
-      display: inline-block;
-      margin:2px;
-      padding:2px;
-      width:auto;
-      height:auto;
-      border:1px solid #000;
-      background-color: aquamarine;
-      cursor: pointer;
     }
   </style>
   <% include ../partials/header.ejs %>
@@ -72,13 +52,13 @@
 <div class="container">
   <h1>User ID: <%=user[0].uid%></h1>
   <form class="" action="/send_update" method="post">
-    <h3>Name:</h3>
+    <h4>Name:</h4>
       <input type="text" name="name_upload" value=<%=user[0].name%> placeholder="Name" required><br>
-      <h3>Age:</h3>
+      <h4>Age:</h4>
       <input type="number" name="age_upload" value=<%=user[0].age%> placeholder="Age" required><br>
-      <h3>Height:</h3>
+      <h4>Height:</h4>
       <input type="number" name="height_upload" value=<%=user[0].height%> placeholder="Height" required><br>
-      <h3>Sex:</h3>
+      <h4>Sex:</h4>
       <select id="sex" name="sex_upload">
           <% if(user[0].sex == 'Male'){ %>
         <option value="Male" selected>Male</option>
@@ -89,12 +69,14 @@
             <% } %>
 
       </select>     
-      <h3>Chess Elo:</h3>
+      <h4>Chess Elo:</h4>
       <input type="number" name="chess_elo_upload" value=<%=user[0].chess_elo%>   placeholder="Chess Elo" required><br>
-      <h3>Type:</h3>
+      <h4>Type:</h4>
       <input style="text-transform: capitalize;" type="text" name="type" value=<%=user[0].type%>   placeholder="type" required><br>
+      <h4>Size:</h4>
+      <input style="text-transform: capitalize;" type="text" name="size" value=<%=user[0].size%>   placeholder="type" required><br>
 
-      <h3 class="text-center">Click Submit to update user <%=user[0].uid%></h3>
+      <h4 class="text-center">Click Submit to update user <%=user[0].uid%></h4>
       <input type="submit" name="sub" value="Submit" class="button" >
       <input id="user_selected_update" name="user_selected_update" type="hidden" value= <%=user[0].uid%> ><br>
 

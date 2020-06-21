@@ -31,7 +31,7 @@ function setup(){
     doc=document.querySelectorAll(".norm");
     for(d of doc){
         d.addEventListener("click",function(){
-            this.style.border = '4px solid orange';
+            this.style.border = '2px solid cyan';
             var uid=document.getElementById('user_selected');
             uid.textContent=this.id;
             uid.value=this.id;
@@ -43,11 +43,9 @@ function setup(){
             u.value=this.id;
             doc=document.querySelectorAll(".norm");
             for(d of doc){
-                console.log(d.style.background)
-                if((d.style.border=='4px solid orange' || d.style.background=='4px solid orange none repeat scroll 0% 0%') && d.id!=this.id ){
-                    console.log(d.dataset.col)
+                if((d.style.border=='2px solid cyan' || d.style.background=='2px solid cyan none repeat scroll 0% 0%') && d.id!=this.id ){
                     
-                    d.style.border="4px solid black"
+                    d.style.border="2px solid black"
                 }
             }
 

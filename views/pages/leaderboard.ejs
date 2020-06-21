@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/st.css" />
+</head>
+
+<body>
+
+<% include ../partials/nav.ejs %>
+
+
+<div class="container">
+<h2>Leader Board</h2>
+
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Chess Elo</th>
+        </tr>
+        <%var rank=1;%>
+        <% rows.forEach(function(r) { %>
+        <tr> <td><%= rank%></td> <td><%= r.name%></td><td><%=r.chess_elo %></td> </tr>
+        <% rank+=1;});%>
+    </table>
+    <form class="" action="/display" method="get">
+        <input class="button-back"  type="submit" name="sub" value="Back">
+      </form>
+
+</div>
+<script type="text/javascript" src="./script.js"></script>
+
+</body>
+</html>

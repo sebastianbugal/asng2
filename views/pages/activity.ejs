@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/st.css" />
+</head>
+
+<body>
+
+<% include ../partials/nav.ejs %>
+
+
+<div class="container">
+<h2>Activity of Users Added</h2>
+
+    <table>
+        <tr>
+            <th>Time Added</th>
+            <th>User ID</th>
+            <th>Name</th>
+        </tr>
+        
+        <% rows.forEach(function(r) { %>
+        <tr> <td><%= r.time_added%></td> <td><%= r.uid%></td><td><%=r.name %></td> </tr>
+        <% });%>
+    </table>
+    <form class="" action="/display" method="get">
+        <input class="button-back"  type="submit" name="sub" value="Back">
+      </form>
+
+</div>
+<script type="text/javascript" src="./script.js"></script>
+
+</body>
+</html>
