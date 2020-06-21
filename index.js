@@ -1,19 +1,19 @@
 const express = require('express')
 const path = require('path')
-const PORT = process.env.PORT || 1000
+const PORT = process.env.PORT || 1100
 const {Pool}=require('pg');
 var pool;
 
   
-pool=new Pool({
-  
-  connectionString: process.env.DATABASE_URL})
-
 // pool=new Pool({
-//   user: 'postgres',
-//   host:'localhost',
-//   password:'root',
-//   port:5432});
+  
+//   connectionString: process.env.DATABASE_URL})
+
+pool=new Pool({
+  user: 'postgres',
+  host:'localhost',
+  password:'root',
+  port:5432});
 
   
 
@@ -31,10 +31,10 @@ app.post('/info',(req,res)=>{
   pool.query(query_select_info,(error,result)=>{
     var results={'user':result}
     if(error){
-      res.redirect('/display');
+      res.redirect('/');
     }
     else if(result==undefined){
-      return res.redirect('/display')
+      return res.redirect('/')
     }
     else{
         res.render('pages/info',results);
@@ -46,7 +46,7 @@ app.get('/activity',(req,res)=>{
   var query_time_added=`SELECT time_added, uid, name FROM usr ORDER BY time_added DESC`;
   pool.query(query_time_added,(error,result)=>{
     if(error){
-      res.redirect('/display');}
+      res.redirect('/');}
     var results={'rows':result.rows}
     res.render('pages/activity',results);
 
@@ -59,11 +59,11 @@ app.post('/update',(req,res)=>{
 
   pool.query(query_update_usr,(error,result)=>{
     if(error){
-      res.redirect('/display');}
+      res.redirect('/');}
     var results={'user':result.rows}
 
     if(results.user.length==0){
-      res.redirect('/display')
+      res.redirect('/')
     }
     else{
       res.render('pages/update',results);
@@ -85,17 +85,17 @@ app.post('/send_update', (req,res)=>{
   pool.query(query_update_usr,(error,result)=>{
     if(error){
       res.end(error);}
-    res.redirect('/display')
+    res.redirect('/')
 })
 })
 
-app.get('/display',(req,res) => {
+app.get('/input',(req,res) => {
   var getUsrQuery =`SELECT * FROM usr`; 
   pool.query(getUsrQuery,(error,result)=>{
     if(error){
       res.end(error);}
     var results={'rows':result.rows}
-    res.render('pages/display',results);
+    res.render('pages/user_enter',results);
   })
 });
 
@@ -115,7 +115,7 @@ app.get('/',(req,res) => {
     if(error){
       res.end(error);}
     var results={'rows':result.rows}
-    res.render('pages/user_enter',results);
+    res.render('pages/display',results);
     
   })
 });
@@ -132,7 +132,7 @@ app.post('/del_user',(req,res)=>{
       if(error){
         res.end(error);}
       var results={'rows':result.rows}
-      res.redirect('/display')
+      res.redirect('/')
 
       
     })

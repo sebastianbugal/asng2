@@ -44,8 +44,6 @@ input{
   .button-back:hover{
     background-color: rgb(141, 141, 141);
     color: black;
-
-
     /* display: inline-block; */
     font-size: 1em;
     transition-duration: 0.4s;

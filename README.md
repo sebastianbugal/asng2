@@ -1,39 +1,4 @@
-# node-js-getting-started
+Readme
+In the web application the navbar is used to display extra features, navigate to the dsplay page and add a new user. When displaying users the users are displayed depending on their height and size parameters. I opted to add the height and size parameters to their smallest possible value to maintain the look and be able to properly display the data within the boxes (if the size was 1 no text would be seen). For the content of the userboxes I filled it with user id, name, and chess elo as one of my extra parameters. To modify, delete, and or get mroe information on a given user select the user box by clicking on it and click on the corisponding button in the upper right hand side of the screen. If problems occur or u did not want to click the button there is a back button. As an additional feature i added a leaderboard and activities page. The activities page displays the current user boxes submission times in cronelogical order. The leader board tab shows a list of top "players" in terms of chess rating. To color the boxes I went with the chess elo rating, in chess the elo system is ussually between 0 (Doesnt know how to move a piece) up to around 3000 (highest chess rating achieved by a human is 2882). I therefore colored the boxes depending on which 500 elo point interval they fall uunder(0-500, 500-1000,1000-1500,1500-2000,2500+) and went for colors such as olive(low tier) all the way up to royal blue(above 2500 high tier). 
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
-
-This application supports the [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
-
-## Running Locally
-
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
-
-```sh
-$ git clone https://github.com/heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
-$ npm install
-$ npm start
-```
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-## Deploying to Heroku
-
-```
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
-or
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-## Documentation
-
-For more information about using Node.js on Heroku, see these Dev Center articles:
-
-- [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+If there are any questions/concerns feel free to email me at sbugal@sfu.ca
