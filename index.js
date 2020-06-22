@@ -5,15 +5,15 @@ const {Pool}=require('pg');
 var pool;
 
   
-// pool=new Pool({
-  
-//   connectionString: process.env.DATABASE_URL})
-
 pool=new Pool({
-  user: 'postgres',
-  host:'localhost',
-  password:'root',
-  port:5432});
+  
+  connectionString: process.env.DATABASE_URL})
+
+// pool=new Pool({
+//   user: 'postgres',
+//   host:'localhost',
+//   password:'root',
+//   port:5432});
 
   
 
