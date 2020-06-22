@@ -52,5 +52,15 @@ function setup(){
         })    
     }
 }
+function text(){
+    doc=document.getElementById('user_not');
+    doc.textContent='User not found, redirecting to home page';
+
+}
+function text_added(){
+    doc=document.getElementById('user_added_prop');
+    doc.textContent='User Successfully Added';
+}
+
 
 setup();

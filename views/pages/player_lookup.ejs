@@ -18,6 +18,8 @@
     margin: 8px 0;
     box-sizing: border-box;
   }
+
+  
   .button {
       background-color: white;
       color: black;
@@ -36,11 +38,22 @@
       border: 2px solid #252525; /* Green */
       width:100%;
       height:auto;
-
       /* display: inline-block; */
       font-size: 1em;
       transition-duration: 0.4s;
     }
+
+    .info_p3{
+        margin-top: 10px;
+        opacity: 0;
+        transition-duration: 0.4s;
+    } 
+
+    form:hover .info_p3{
+        transition-duration: 0.4s;
+        opacity: 1;
+    }
+   
   </style>
   <% include ../partials/header.ejs %>
 </head>
@@ -53,8 +66,14 @@
   <h1>User Search</h1>
   <form class="" action="/find" method="post">
       <input type="number" name="uidlook" value="" placeholder="Unique Player ID" required><br>
+     
       <input class="button"type="submit" name="sub" value="Search">
+ 
+          <center>
+      <p3 class="info_p3" style="text-align: center;">If the user is not found you will be redirected to the main page</p3>
+            </center>
   </form>
+  <div id="user_not" class=input style="text-align: center; font-size: 1.5em; color:red; margin-top:10px;"></div>
 
 </div>
 </body>

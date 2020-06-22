@@ -5,15 +5,15 @@ const {Pool}=require('pg');
 var pool;
 
   
-pool=new Pool({
-  
-  connectionString: process.env.DATABASE_URL})
-
 // pool=new Pool({
-//   user: 'postgres',
-//   host:'localhost',
-//   password:'root',
-//   port:5432});
+  
+//   connectionString: process.env.DATABASE_URL})
+
+pool=new Pool({
+  user: 'postgres',
+  host:'localhost',
+  password:'root',
+  port:5432});
 
   
 
@@ -23,6 +23,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
+
 
 
 app.post('/info',(req,res)=>{
@@ -44,6 +45,7 @@ app.post('/info',(req,res)=>{
 
 app.get('/lookup',(req,res)=>{
   res.render('pages/player_lookup');
+  
 });
 
 app.post('/find', (req,res)=>{
@@ -51,17 +53,19 @@ app.post('/find', (req,res)=>{
   var query_find_uid_info=`select * from usr where uid=${Number(a)}`;
   pool.query(query_find_uid_info,(error,result)=>{
     results={'user':result}
+    console.log(result.rows.length)
     if(error){
       res.redirect('/');
     }
-    else if(result==undefined){
-      return res.redirect('/')
+    else if(result.rows.length<1){
+      res.redirect('/'); 
     }
     else{
         res.render('pages/info',results);
     }
   })
 });
+
 app.get('/activity',(req,res)=>{
   var query_time_added=`SELECT time_added, uid, name FROM usr ORDER BY time_added DESC`;
   pool.query(query_time_added,(error,result)=>{
@@ -170,7 +174,10 @@ app.post('/adduser',(req,res)=>{
   pool.query(insert_user_query,(error,result)=>{
     if(error){
       res.end(error);}
-    res.redirect('/')
+    setTimeout(function(){
+      res.redirect('/')
+    }, 1500)
+    
     })
 
 });
